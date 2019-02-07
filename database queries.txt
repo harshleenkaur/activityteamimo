@@ -1,0 +1,350 @@
+ create database IMO;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use IMO;
+Database changed
+mysql> CREATE TABLE Student_Details (
+    -> SNO int AUTO_INCREMENT ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> CREATE TABLE Student_Details (
+    -> SNO int AUTO_INCREMENT ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> CREATE TABLE Student_Details (
+    -> SNO int AUTO_INCREMENT,
+    -> Full_Name Varchar(30),
+    -> Roll_Number int NOT NULL PRIMARY KEY,
+    -> DOB date CHECK (DOB LIKE '--/--/----'),
+    -> Blood_Group Varchar(5),
+    -> Contact int(13),
+    -> EMail varchar(50),
+    -> Marks_10 int(5),
+    -> Marks_12 int(5),
+    -> Marks_grad int(5),
+    -> Password varchar(20)
+    -> );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> CREATE TABLE Student_Details (
+    -> Full_Name Varchar(30),
+    -> Roll_Number int NOT NULL PRIMARY KEY,
+    -> DOB date CHECK (DOB LIKE '--/--/----'),
+    -> Blood_Group Varchar(5),
+    -> Contact int(13),
+    -> EMail varchar(50),
+    -> Marks_10 int(5),
+    -> Marks_12 int(5),
+    -> Marks_grad int(5),
+    -> Password varchar(20)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT * FROM Student_Details;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE Admin_Details (
+    -> Full_Name Varchar(30),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> CREATE TABLE Admin_Details (
+    -> User_Name Varchar(30),
+    -> Password varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> CREATE TABLE Admin_Details (
+    -> User_Name Varchar(30),
+    -> Password varchar(20))
+    -> ;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE TABLE Staff_Details (
+    -> Full_Name varchar(30),
+    -> ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    -> Specialisation varchar(30),
+    -> Contact int(13));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE Comapany_Details (
+    -> Name varchar(20),
+    -> Job_Profile varchar(20),
+    -> Email varchar(30),
+    -> Contact varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_imo    |
++------------------+
+| admin_details    |
+| comapany_details |
+| staff_details    |
+| student_details  |
++------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO admin_details (User_Name,Password) VALUES
+    -> ('master','dhoom_machale1234');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO company_details (Name,Job_Profile,Email,Contact) VALUES
+    -> ('NIIT TECHNOLOGIES LTD', 'GET', 'WWW.niit-tech.com', 8285864867),
+    -> ('NIIT', 'GET', 'WWW.niit.com', 8288901810),
+    -> ('To The New', 'Java Developer', 'WWW.tothenew.com', 8700132458),
+    -> ('APPTECH', 'Trainee', 'www.apptech.com', 8860612024);
+ERROR 1146 (42S02): Table 'imo.company_details' doesn't exist
+mysql> INSERT INTO comapany_details (Name,Job_Profile,Email,Contact) VALUES
+    -> ('NIIT TECHNOLOGIES LTD', 'GET', 'WWW.niit-tech.com', 8285864867),
+    -> ('NIIT', 'GET', 'WWW.niit.com', 8288901810),
+    -> ('To The New', 'Java Developer', 'WWW.tothenew.com', 8700132458),
+    -> ('APPTECH', 'Trainee', 'www.apptech.com', 8860612024);
+ERROR 1406 (22001): Data too long for column 'Name' at row 1
+mysql> INSERT INTO company_details (Name,Job_Profile,Email,Contact) VALUES
+    -> ('NIIT TECHNOLOGIES', 'GET', 'WWW.niit-tech.com', 8285864867),
+    -> ('NIIT', 'GET', 'WWW.niit.com', 8288901810),
+    -> ('To The New', 'Java Developer', 'WWW.tothenew.com', 8700132458),
+    -> ('APPTECH', 'Trainee', 'www.apptech.com', 8860612024);
+ERROR 1146 (42S02): Table 'imo.company_details' doesn't exist
+mysql> INSERT INTO comapany_details (Name,Job_Profile,Email,Contact) VALUES
+    -> ('NIIT TECHNOLOGIES LTD', 'GET', 'WWW.niit-tech.com', 8285864867),
+    -> ('NIIT', 'GET', 'WWW.niit.com', 8288901810),
+    -> ('To The New', 'Java Developer', 'WWW.tothenew.com', 8700132458),
+    -> ('APPTECH', 'Trainee', 'www.apptech.com', 8860612024);
+ERROR 1406 (22001): Data too long for column 'Name' at row 1
+mysql> INSERT INTO comapany_details (Name,Job_Profile,Email,Contact) VALUES
+    -> ('NIIT TECHNOLOGIES', 'GET', 'WWW.niit-tech.com', 8285864867),
+    -> ('NIIT', 'GET', 'WWW.niit.com', 8288901810),
+    -> ('To The New', 'Java Developer', 'WWW.tothenew.com', 8700132458),
+    -> ('APPTECH', 'Trainee', 'www.apptech.com', 8860612024);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO staff_details (Name,Specialisation,Contact) VALUES
+    -> ('Neha','L&D',9294497904),
+    -> ('Dimple','L&D',926547904),
+    -> ('Nikita','L&D',945654904),
+    -> ('Shweta','L&D',945654904);
+ERROR 1054 (42S22): Unknown column 'Name' in 'field list'
+mysql> INSERT INTO staff_details (Full_Name,Specialisation,Contact) VALUES
+    -> ('Neha','L&D',9294497904),
+    -> ('Dimple','L&D',926547904),
+    -> ('Nikita','L&D',945654904),
+    -> ('Shweta','L&D',945654904);
+ERROR 1264 (22003): Out of range value for column 'Contact' at row 1
+mysql> drop table staff_details;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE Staff_Details (
+    -> ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    -> Full_Name varchar(50),
+    -> Specialisation varchar(30),
+    -> Contact int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO staff_details (Full_Name,Specialisation,Contact) VALUES
+    -> ('Neha','L&D',9294497904),
+    -> ('Dimple','L&D',926547904),
+    -> ('Nikita','L&D',945654904),
+    -> ('Shweta','L&D',945654904);
+ERROR 1264 (22003): Out of range value for column 'Contact' at row 1
+mysql> INSERT INTO staff_details (Full_Name,Specialisation,Contact) VALUES
+    -> ('Neha','L&D',929449790),
+    -> ('Dimple','L&D',926547904),
+    -> ('Nikita','L&D',945654904),
+    -> ('Shweta','L&D',945654904);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO student_details (Full_Name,Specialisation,Contact) VALUES
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','2K15CSUN01064','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,password12345),
+    -> ('Harshleen Kaur','2K15CSUN01034','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,harshleen12345),
+    -> ('Meghna Harit','2K15CSUN01040','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,madamharit12345),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,gehlawatsahab12345),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','09/12/1997',O+',8288234234,'dummy123@gmail.com',34,23,70,dummy1),
+    '> ('Gaurav Gahlawat','2K15CSUN01210','09/12/1997',O+',8288234234,'dummy123@gmail.com',34,23,70,dummy1),;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dummy123@gmail.com',34,23,70,dummy1),
+('Gaurav Gahlawat','2K15CSUN01210','09/12/' at line 6
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','2K15CSUN01064','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,password12345),
+    -> ('Harshleen Kaur','2K15CSUN01034','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,harshleen12345),
+    -> ('Meghna Harit','2K15CSUN01040','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,madamharit12345),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,gahlawatsahab12345),
+    -> ('Dummy Singh','2K15CSUN01243','09/12/1997',O+',8288234234,'dummy123@gmail.com',34,23,70,dummy1);
+    '> ;
+    '> );
+    '> q
+    '> ^X
+    '> quit;
+    '>
+    '> ;
+    '> );
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dummy123@gmail.com',34,23,70,dummy1);
+;
+);
+q
+
+quit;
+
+;
+);
+'' at line 6
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','2K15CSUN01064','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,password12345),
+    -> ('Harshleen Kaur','2K15CSUN01034','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,harshleen12345),
+    -> ('Meghna Harit','2K15CSUN01040','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,madamharit12345),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,gahlawatsahab12345),
+    -> ('Dummy Singh','2K15CSUN01243','09/12/1997',O+',8288234234,'dummy123@gmail.com',34,23,70,dummy1);
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dummy123@gmail.com',34,23,70,dummy1);
+'' at line 6
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','2K15CSUN01064','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,password12345),
+    -> ('Harshleen Kaur','2K15CSUN01034','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,harshleen12345),
+    -> ('Meghna Harit','2K15CSUN01040','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,madamharit12345),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,gahlawatsahab12345),
+    -> ('Dummy Singh','2K15CSUN01243','09/12/1997','O+',8288234234,'dummy123@gmail.com',34,23,70,dummy1);
+ERROR 1054 (42S22): Unknown column 'password12345' in 'field list'
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','2K15CSUN01064','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,'password12345'),
+    -> ('Harshleen Kaur','2K15CSUN01034','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,'harshleen12345'),
+    -> ('Meghna Harit','2K15CSUN01040','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,'madamharit12345'),
+    -> ('Gaurav Gahlawat','2K15CSUN01210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,'gahlawatsahab12345'),
+    -> ('Dummy Singh','2K15CSUN01243','09/12/1997','O+',8288234234,'dummy123@gmail.com',34,23,70,'dummy1');
+ERROR 1265 (01000): Data truncated for column 'Roll_Number' at row 1
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','64','25/05/1997','A+',8285864867,'sabhinav700@gmail.com',82,88,80,'password12345'),
+    -> ('Harshleen Kaur','34','22/10/1995','B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,'harshleen12345'),
+    -> ('Meghna Harit','40','02/02/1995','A+',8860612024,'meghnaharit@gmail.com',84,88,70,'madamharit12345'),
+    -> ('Gaurav Gahlawat','1210','10/10/1997','A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,'gahlawatsahab12345'),
+    -> ('Dummy Singh','1243','09/12/1997','O+',8288234234,'dummy123@gmail.com',34,23,70,'dummy1');
+ERROR 1292 (22007): Incorrect date value: '25/05/1997' for column 'DOB' at row 1
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','64',25/05/1997,'A+',8285864867,'sabhinav700@gmail.com',82,88,80,'password12345'),
+    -> ('Harshleen Kaur','34',22/10/1995,'B+',8374892018,'harshleenkaur95@gmail.com',80,85,71,'harshleen12345'),
+    -> ('Meghna Harit','40',02/02/1995,'A+',8860612024,'meghnaharit@gmail.com',84,88,70,'madamharit12345'),
+    -> ('Gaurav Gahlawat','1210',10/10/1997,'A+',8288901810,'gauravgahlawat1997@gmail.com',85,80,77,'gahlawatsahab12345'),
+    -> ('Dummy Singh','1243',09/12/1997,'O+',8288234234,'dummy123@gmail.com',34,23,70,'dummy1');
+ERROR 1264 (22003): Out of range value for column 'Contact' at row 1
+mysql> INSERT INTO student_details (Full_Name,Roll_Number,DOB,Blood_Group,Contact,EMail,Marks_10, Marks_12,Marks_grad,Password) VALUES
+    -> ('Abhinav Sharma','64',25/05/1997,'A+',828586486,'sabhinav700@gmail.com',82,88,80,'password12345'),
+    -> ('Harshleen Kaur','34',22/10/1995,'B+',837489201,'harshleenkaur95@gmail.com',80,85,71,'harshleen12345'),
+    -> ('Meghna Harit','40',02/02/1995,'A+',886061202,'meghnaharit@gmail.com',84,88,70,'madamharit12345'),
+    -> ('Gaurav Gahlawat','1210',10/10/1997,'A+',828890181,'gauravgahlawat1997@gmail.com',85,80,77,'gahlawatsahab12345'),
+    -> ('Dummy Singh','1243',09/12/1997,'O+',828823424,'dummy123@gmail.com',34,23,70,'dummy1');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM students_details;
+ERROR 1146 (42S02): Table 'imo.students_details' doesn't exist
+mysql> SELECT * FROM student_details;
++-----------------+-------------+------------+-------------+-----------+------------------------------+----------+----------+------------+--------------------+
+| Full_Name       | Roll_Number | DOB        | Blood_Group | Contact   | EMail                        | Marks_10 | Marks_12 | Marks_grad | Password           |
++-----------------+-------------+------------+-------------+-----------+------------------------------+----------+----------+------------+--------------------+
+| Harshleen Kaur  |          34 | 0000-00-00 | B+          | 837489201 | harshleenkaur95@gmail.com    |       80 |       85 |         71 | harshleen12345     |
+| Meghna Harit    |          40 | 0000-00-00 | A+          | 886061202 | meghnaharit@gmail.com        |       84 |       88 |         70 | madamharit12345    |
+| Abhinav Sharma  |          64 | 0000-00-00 | A+          | 828586486 | sabhinav700@gmail.com        |       82 |       88 |         80 | password12345      |
+| Gaurav Gahlawat |        1210 | 0000-00-00 | A+          | 828890181 | gauravgahlawat1997@gmail.com |       85 |       80 |         77 | gahlawatsahab12345 |
+| Dummy Singh     |        1243 | 0000-00-00 | O+          | 828823424 | dummy123@gmail.com           |       34 |       23 |         70 | dummy1             |
++-----------------+-------------+------------+-------------+-----------+------------------------------+----------+----------+------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM staff_details;
++----+-----------+----------------+-----------+
+| ID | Full_Name | Specialisation | Contact   |
++----+-----------+----------------+-----------+
+|  1 | Neha      | L&D            | 929449790 |
+|  2 | Dimple    | L&D            | 926547904 |
+|  3 | Nikita    | L&D            | 945654904 |
+|  4 | Shweta    | L&D            | 945654904 |
++----+-----------+----------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM company_details
+    -> ;
+ERROR 1146 (42S02): Table 'imo.company_details' doesn't exist
+mysql> SELECT * FROM comapany_details;
++-------------------+----------------+-------------------+------------+
+| Name              | Job_Profile    | Email             | Contact    |
++-------------------+----------------+-------------------+------------+
+| NIIT TECHNOLOGIES | GET            | WWW.niit-tech.com | 8285864867 |
+| NIIT              | GET            | WWW.niit.com      | 8288901810 |
+| To The New        | Java Developer | WWW.tothenew.com  | 8700132458 |
+| APPTECH           | Trainee        | www.apptech.com   | 8860612024 |
++-------------------+----------------+-------------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from admin_details;
++-----------+-------------------+
+| User_Name | Password          |
++-----------+-------------------+
+| master    | dhoom_machale1234 |
++-----------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table student_details;
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table           | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| student_details | CREATE TABLE `student_details` (
+  `Full_Name` varchar(30) DEFAULT NULL,
+  `Roll_Number` int(11) NOT NULL,
+  `DOB` date DEFAULT NULL,
+  `Blood_Group` varchar(5) DEFAULT NULL,
+  `Contact` int(13) DEFAULT NULL,
+  `EMail` varchar(50) DEFAULT NULL,
+  `Marks_10` int(5) DEFAULT NULL,
+  `Marks_12` int(5) DEFAULT NULL,
+  `Marks_grad` int(5) DEFAULT NULL,
+  `Password` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Roll_Number`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table admin_details;
++---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Create Table                                                                                                                                        |
++---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| admin_details | CREATE TABLE `admin_details` (
+  `User_Name` varchar(30) DEFAULT NULL,
+  `Password` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table comapany_details;
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table            | Create Table                                                                                                                                                                                                                   |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| comapany_details | CREATE TABLE `comapany_details` (
+  `Name` varchar(20) DEFAULT NULL,
+  `Job_Profile` varchar(20) DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `Contact` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table staff_details;
++---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Create Table                                                                                                                                                                                                                                                               |
++---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| staff_details | CREATE TABLE `staff_details` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Full_Name` varchar(50) DEFAULT NULL,
+  `Specialisation` varchar(30) DEFAULT NULL,
+  `Contact` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 |
++---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> create database CIS;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use CIS;
+Database changed
+mysql> create table customer (
+    ->
+
+
