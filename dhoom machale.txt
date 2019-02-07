@@ -1,0 +1,116 @@
+create table customer(
+    -> cust_id int not null auto_increment PRIMARY KEY,
+    -> cust_name varchar(255),
+    -> cust_phone varchar(255),
+    -> cust_type varchar(255));
+alter table customer add column cust_address varchar(250);
+
+
+ create table product(
+    -> prod_id int not null auto_increment PRIMARY KEY,
+    -> prod_name varchar(100) not null,
+    -> prod_price decimal not null,
+    -> cust_id int not null,
+    -> FOREIGN KEY fk_cust(cust_id)
+    -> REFERENCES customer(cust_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT);
+
+
+create table purchase(
+    -> purchase_id int auto_increment PRIMARY KEY,
+    -> purchase_quntity int not null,
+    -> purchase_date date,
+    -> prod_id int not null,
+    -> cust_id int not null,
+    -> FOREIGN KEY fk_cust(cust_id)
+    -> REFERENCES customer(cust_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT,
+    -> FOREIGN KEY fk_prod(prod_id)
+    -> REFERENCES product(prod_id)
+    -> );
+
+
+
+create table bill(
+    -> bill_id int not null auto_increment PRIMARY KEY,
+    -> payable_amt decimal not null,
+    -> cust_id int not null,
+    -> purchase_id int not null,
+    -> FOREIGN KEY fk_cust(cust_id)
+    -> REFERENCES customer(cust_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT,
+    -> FOREIGN KEY fk_pur(purchase_id)
+    -> REFERENCES purchase(purchase_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT);
+
+
+
+
+create table discount(
+    -> discount_id int not null PRIMARY KEY auto_increment,
+    -> discount_type varchar(200) not null,
+    -> discount_value decimal,
+    -> purchase_id int not null,
+    -> bill_id int not null,
+    -> FOREIGN KEY fk_pur(purchase_id)
+    -> REFERENCES purchase(purchase_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT,
+    -> FOREIGN KEY fk_bill(bill_id)
+    -> REFERENCES bill(bill_id)
+    -> ON UPDATE CASCADE
+    -> ON DELETE RESTRICT);
+
+
+
+insert into customer(cust_name,cust_phone,cust_type,cust_address)values
+    -> ('arpana',9877667788,'regular','ghaziabad'),
+    -> ('varun',7777888800,'regular','noida'),
+    -> ('bharti',7344448890,'premium','noida'),
+    -> ('gajal',8766776678,'premium','mohnngr'),
+    -> ('yugal',8766776787,'premium','mohnngr');
+
+
+
+insert into product(prod_name,prod_price,cust_id)values
+    -> ('Tv',500,1),
+    -> ('laptop',5000,2),
+    -> ('phone',8000,3),
+    -> ('freeze',10000,4),
+    -> ('microwave',6000,5);
+
+
+
+insert into purchase(purchase_quntity,purchase_date,prod_id,cust_id)values
+    -> (2,'2019/02/07',1,1),
+    -> (3,'2018/01/07',2,2),
+    -> (3,'2018/01/07',3,3),
+    -> (4,'2018/12/10',4,4),
+    -> (5,'2019/02/11',5,5);
+
+
+
+
+insert into bill(payable_amt,cust_id,purchase_id)values
+    -> (500,1,1),
+    -> (600,2,3),
+    -> (800,3,3),
+    -> (1000,4,4),
+    -> (6000,5,5);
+
+
+
+insert into discount(discount_type,discount_value,purchase_id,bill_id)values
+    -> ('premium',10,1,1),
+    -> ('premium',10,2,2),
+    -> ('regular',5,3,3),
+    -> ('regular',5,4,4),
+    -> ('regular',5,5,5);
+
+
+
+
