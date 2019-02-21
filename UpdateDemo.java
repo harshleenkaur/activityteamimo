@@ -30,8 +30,9 @@ public class UpdateDemo {
 		    Scanner s = new Scanner(System.in);
 		    		System.out.println("enter employeed id:");
 		    int eid = s.nextInt();  //1702
+		    s.nextLine();
 		    System.out.println("enter new job title: ");
-		    String strm = s.next(); //sales manager
+		    String strm = s.nextLine(); //sales manager
 		    pstmt.setString(1, strm);
 		    pstmt.setInt(2,eid);
 		    
